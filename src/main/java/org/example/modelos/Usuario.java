@@ -1,21 +1,36 @@
 package org.example.modelos;
 
-public class Usuario {
-    private Integer id;
-    private String documento;
-    private String nombres;
-    private String correo;
-    private Integer ubicacion;
+import org.example.validacion.UsuarioValidacion;
 
-    public Usuario() {
+public class Usuario {
+
+    //ATTRIBUTES = VARIABLES = DATES
+
+    //METHODS = FUNCTIONS = ACTIONS
+
+
+
+    //ORDINARY METHODS
+
+    private Integer id;
+    private String nombres;
+    private String documento ;
+    private  Integer ubicacion ;
+    private  String correoElectronico;
+
+    private UsuarioValidacion Validacion = new UsuarioValidacion();
+
+    //SPECIAL METHODS
+
+    public Usuario() { //Constructor vacio
     }
 
-    public Usuario(Integer id, String documento, String nombres, String correo, Integer ubicacion) {
+    public Usuario(Integer id, String nombres, String documento, Integer ubicacion, String correoElectronico) {
         this.id = id;
-        this.documento = documento;
         this.nombres = nombres;
-        this.correo = correo;
+        this.documento = documento;
         this.ubicacion = ubicacion;
+        this.correoElectronico = correoElectronico;
     }
 
     public Integer getId() {
@@ -26,6 +41,20 @@ public class Usuario {
         this.id = id;
     }
 
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        try {
+            this.Validacion.ValidarNombre(nombres);
+            this.nombres = nombres;
+        } catch (Exception error){
+            System.out.print(error.getMessage());
+        }
+
+    }
+
     public String getDocumento() {
         return documento;
     }
@@ -34,27 +63,19 @@ public class Usuario {
         this.documento = documento;
     }
 
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
     public Integer getUbicacion() {
         return ubicacion;
     }
 
     public void setUbicacion(Integer ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 }
