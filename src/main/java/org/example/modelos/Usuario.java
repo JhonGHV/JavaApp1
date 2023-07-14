@@ -4,13 +4,7 @@ import org.example.validacion.UsuarioValidacion;
 
 public class Usuario {
 
-    //ATTRIBUTES = VARIABLES = DATES
 
-    //METHODS = FUNCTIONS = ACTIONS
-
-
-
-    //ORDINARY METHODS
 
     private Integer id;
     private String nombres;
@@ -18,7 +12,7 @@ public class Usuario {
     private  Integer ubicacion ;
     private  String correoElectronico;
 
-    private UsuarioValidacion Validacion = new UsuarioValidacion();
+    private UsuarioValidacion validacion = new UsuarioValidacion();
 
     //SPECIAL METHODS
 
@@ -47,7 +41,7 @@ public class Usuario {
 
     public void setNombres(String nombres) {
         try {
-            this.Validacion.ValidarNombre(nombres);
+            this.validacion.validarNombre(nombres);
             this.nombres = nombres;
         } catch (Exception error){
             System.out.print(error.getMessage());
@@ -67,15 +61,37 @@ public class Usuario {
         return ubicacion;
     }
 
+
+
+
+
     public void setUbicacion(Integer ubicacion) {
-        this.ubicacion = ubicacion;
+        try {
+            this.validacion.validarUbicacion(ubicacion);
+            this.ubicacion = ubicacion;
+        }
+        catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
+
+
+
+
+
+
+    public String getCorreoElectronico(){return correoElectronico;}
 
     public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+
+        try {
+            this.validacion.validarCorreoElectronico(correoElectronico);
+            this.correoElectronico = correoElectronico;
+
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
+
     }
 }
