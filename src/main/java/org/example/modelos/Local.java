@@ -1,20 +1,24 @@
 package org.example.modelos;
 
-public class Local {
-    private Integer id;
-    private Integer nit;
-    private String nombre;
-    private Integer ubicacion;
-    private String descripcion;
+import org.example.validacion.LocalValidacion;
 
+public class Local {
+
+    private Integer id;
+    private  String nit;
+    private String nombre;
+    private Integer direccion;
+    private  String descripcion;
+
+    private LocalValidacion validacion = new LocalValidacion();
     public Local() {
     }
 
-    public Local(Integer id, Integer nit, String nombre, Integer ubicacion, String descripcion) {
+    public Local(Integer id, String nit, String nombre, Integer direccion, String descripcion) {
         this.id = id;
         this.nit = nit;
         this.nombre = nombre;
-        this.ubicacion = ubicacion;
+        this.direccion = direccion;
         this.descripcion = descripcion;
     }
 
@@ -26,12 +30,20 @@ public class Local {
         this.id = id;
     }
 
-    public Integer getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(Integer nit) {
-        this.nit = nit;
+    public void setNit(String nit) {
+
+        try {
+            this.validacion.validarDigitos(nit);
+            this.nit = nit;
+        }
+        catch (Exception error){
+            System.out.print(error.getMessage());
+        }
+
     }
 
     public String getNombre() {
@@ -39,15 +51,21 @@ public class Local {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            this.validacion.validarNombreEmpresa(nombre);
+            this.nombre = nombre;
+        } catch (Exception error){
+            System.out.print(error.getMessage());
+        }
+
     }
 
-    public Integer getUbicacion() {
-        return ubicacion;
+    public Integer getDireccion() {
+        return direccion;
     }
 
-    public void setUbicacion(Integer ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setDireccion(Integer direccion) {
+        this.direccion = direccion;
     }
 
     public String getDescripcion() {
@@ -56,5 +74,17 @@ public class Local {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Local{" +
+                "id=" + id +
+                ", nit='" + nit + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion=" + direccion +
+                ", descripcion='" + descripcion + '\'' +
+                ", validacion=" + validacion +
+                '}';
     }
 }

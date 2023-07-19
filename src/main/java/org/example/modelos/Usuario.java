@@ -4,7 +4,13 @@ import org.example.validacion.UsuarioValidacion;
 
 public class Usuario {
 
+    //ATTRIBUTES = VARIABLES = DATES
 
+    //METHODS = FUNCTIONS = ACTIONS
+
+
+
+    //ORDINARY METHODS
 
     private Integer id;
     private String nombres;
@@ -61,10 +67,6 @@ public class Usuario {
         return ubicacion;
     }
 
-
-
-
-
     public void setUbicacion(Integer ubicacion) {
         try {
             this.validacion.validarUbicacion(ubicacion);
@@ -74,12 +76,6 @@ public class Usuario {
             System.out.println(error.getMessage());
         }
     }
-
-
-
-
-
-
 
     public String getCorreoElectronico(){return correoElectronico;}
 
@@ -93,5 +89,17 @@ public class Usuario {
             System.out.println(error.getMessage());
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", documento='" + documento + '\'' +
+                ", ubicacion=" + ubicacion +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", validacion=" + validacion +
+                '}';
     }
 }

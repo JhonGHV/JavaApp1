@@ -1,22 +1,28 @@
 package org.example.modelos;
 
+import org.example.validacion.ReservaValidacion;
+
 public class Reserva {
 
     private Integer id;
-    private Integer idusuario;
-    private Integer idoferta;
-    private Double costototal;
-    private Double fechareserva;
+    private Integer idUsuario;
+    private   Integer idOferta;
+    private  Double fechaReserva;
+    private  Integer cantidadUsuarios;
 
+    private Double costoTotal;
+
+    protected ReservaValidacion validacion = new ReservaValidacion();
     public Reserva() {
     }
 
-    public Reserva(Integer id, Integer idusuario, Integer idoferta, Double costototal, Double fechareserva) {
+    public Reserva(Integer id, Integer idUsuario, Integer idOferta, Double fechaReserva, Integer cantidadUsuarios, Double costoTotal) {
         this.id = id;
-        this.idusuario = idusuario;
-        this.idoferta = idoferta;
-        this.costototal = costototal;
-        this.fechareserva = fechareserva;
+        this.idUsuario = idUsuario;
+        this.idOferta = idOferta;
+        this.fechaReserva = fechaReserva;
+        this.cantidadUsuarios = cantidadUsuarios;
+        this.costoTotal = costoTotal;
     }
 
     public Integer getId() {
@@ -27,35 +33,61 @@ public class Reserva {
         this.id = id;
     }
 
-    public Integer getIdusuario() {
-        return idusuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdusuario(Integer idusuario) {
-        this.idusuario = idusuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Integer getIdoferta() {
-        return idoferta;
+    public Integer getIdOferta() {
+        return idOferta;
     }
 
-    public void setIdoferta(Integer idoferta) {
-        this.idoferta = idoferta;
+    public void setIdOferta(Integer idOferta) {
+        this.idOferta = idOferta;
     }
 
-    public Double getCostototal() {
-        return costototal;
+    public Double getFechaReserva() {
+        return fechaReserva;
     }
 
-    public void setCostototal(Double costototal) {
-        this.costototal = costototal;
+    public void setFechaReserva(Double fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 
-    public Double getFechareserva() {
-        return fechareserva;
+    public Integer getCantidadUsuariosReserva() {
+        return cantidadUsuarios;
     }
 
-    public void setFechareserva(Double fechareserva) {
-        this.fechareserva = fechareserva;
+    public void setCantidadUsuariosReserva(Integer cantidadUsuarios) {
+        try {
+            this.validacion.validarCantidadReserva( cantidadUsuarios);
+            this.cantidadUsuarios = cantidadUsuarios;
+        } catch (Exception error){
+            System.out.print(error.getMessage());
+        }
+    }
+
+    public Double getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(Double costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", idUsuario=" + idUsuario +
+                ", idOferta=" + idOferta +
+                ", fechaReserva=" + fechaReserva +
+                ", cantidadUsuarios=" + cantidadUsuarios +
+                ", costoTotal=" + costoTotal +
+
+                '}';
     }
 }
